@@ -78,13 +78,6 @@ public final class Constants {
       public static final double constantRotation = 3;
     }
 
-    // Classe que guarda os nomes das trajetórias
-    public static final class Trajetoria {
-      public static final boolean ALIANCA = false; // Caso a aliança seja azul use false, se for vermelha use true
-      public static final String NOME_TRAJETORIA = "New Auto";
-      public static final String NOME_TRAJETORIA2 = "New Path2";
-    }
-
     public static final class elevatorConstants{
 
       public static final double KfowarSoftLimit = 0;
@@ -119,7 +112,27 @@ public final class Constants {
       public static final double kOuttakeDownMotorMaxSpeed = -0.10;
     }
 
-  }
+
+    public final class ElevatorConstants {
+      public static final int kelevatorMotor = 14;
+      
+      // Posições pré-definidas (em unidades do encoder)
+      public static final double kHomePosition = 0;
+      public static final double kL2 = 50;
+      public static final double KL3 = 100;
+      public static final double KL4 = 125;
+      
+      // Soft Limits
+      public static final double KfowarSoftLimit = 120;
+      public static final double KreverseSoftLimit = -10;
+      
+      // PID
+      public static final double kP = 0.1;
+      public static final double kI = 0.0;
+      public static final double kD = 0;
+  
+
+  }}
    
     
    

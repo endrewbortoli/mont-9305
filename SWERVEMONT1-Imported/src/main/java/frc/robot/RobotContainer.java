@@ -5,11 +5,12 @@
 package frc.robot;
 
 import frc.robot.Constants.Controle;
-import frc.robot.Constants.Trajetoria;
 import frc.robot.commands.AutoDriveForward;
+import frc.robot.commands.ElevatorCmd;
 import frc.robot.commands.OuttakeCmd;
 import frc.robot.subsystems.OuttakeSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
+import frc.robot.subsystems.elevator;
 
 import java.io.File;
 
@@ -21,12 +22,15 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class RobotContainer {
   // Aqui iniciamos o swerve
   private SwerveSubsystem swerve = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve"));
   public static OuttakeSubsystem outtakeSubsystem = new OuttakeSubsystem();
+  private final elevator elevatorSubsystem = new elevator();
+
 
   
   // Controle de Xbox, troque para o qual sua equipe estará utilizando
@@ -40,8 +44,6 @@ public class RobotContainer {
       () -> MathUtil.applyDeadband(DriverJoystick.getRawAxis(1), Constants.Controle.DEADBAND),
       () -> MathUtil.applyDeadband(DriverJoystick.getRawAxis(0), Constants.Controle.DEADBAND),
       () -> DriverJoystick.getRawAxis(4)));
-
-    NamedCommands.registerCommand("Intake", new PrintCommand("Intake"));
 
     // Configure the trigger bindings
     configureBindings();
@@ -59,14 +61,25 @@ public class RobotContainer {
         new Trigger(() -> 
           OperatorJoystick.getLeftTriggerAxis() > 0.1)
             .whileTrue(new OuttakeCmd(outtakeSubsystem, "Intake"));
+
+        //             // Posições pré-definidas
+        // new JoystickButton(OperatorJoystick, XboxController.Button.kA.value)
+        //     .onTrue(new ElevatorCmd(elevatorSubsystem, Constants.ElevatorConstants.kHomePosition));
+            
+        // new JoystickButton(OperatorJoystick, XboxController.Button.kB.value)
+        //     .onTrue(new ElevatorCmd(elevatorSubsystem, Constants.ElevatorConstants.kL2));
+            
+        // new JoystickButton(OperatorJoystick, XboxController.Button.kY.value)
+        //     .onTrue(new ElevatorCmd(elevatorSubsystem, Constants.ElevatorConstants.KL3));
+
+        // new JoystickButton(OperatorJoystick, XboxController.Button.kX.value)
+        //     .onTrue(new ElevatorCmd(elevatorSubsystem, Constants.ElevatorConstants.KL4));
+
     }
-
-
-  
 
   // Função que retorna o autônomo
   public Command getAutonomousCommand() {
-    return new AutoDriveForward(swerve, 0.5, 1.0) // 50% de velocidade por 2 segundos
+    return new AutoDriveForward(swerve, -0.3, 2.0) // 30% de velocidade por 2 segundos
             .withTimeout(2.0); // redundância para segurança
   }
 
