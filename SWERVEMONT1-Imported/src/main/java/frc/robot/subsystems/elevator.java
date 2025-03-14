@@ -22,7 +22,7 @@ public class elevator extends SubsystemBase {
     
 
     public elevator() {
-        elevatorMotor = new SparkFlex(Constants.elevatorcontants.kelevatorMotor, MotorType.kBrushless);
+        elevatorMotor = new SparkFlex(Constants.elevatorConstants.kelevatorMotor, MotorType.kBrushless);
 
         ConfigureMotorController(elevatorMotor, true, IdleMode.kCoast);
         closedLoopController = elevatorMotor.getClosedLoopController();

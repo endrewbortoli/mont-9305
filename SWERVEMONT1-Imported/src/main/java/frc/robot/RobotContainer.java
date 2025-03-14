@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.Controle;
 import frc.robot.Constants.Trajetoria;
+import frc.robot.subsystems.OuttakeSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 
 import java.io.File;
@@ -15,15 +16,19 @@ import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 
 public class RobotContainer {
   // Aqui iniciamos o swerve
   private SwerveSubsystem swerve = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve"));
+    public static OuttakeSubsystem outtake = new OuttakeSubsystem();
+
   
   // Controle de Xbox, troque para o qual sua equipe estará utilizando
   private Joystick DriverJoystick = new Joystick(Controle.DriverJoystick);
+  private XboxController OperatorJoystick = new XboxController(Controle.OperatorJoystick);
 
   public RobotContainer() {
 

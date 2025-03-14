@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.SparkMax;
+
 import edu.wpi.first.math.geometry.Translation3d;
 import swervelib.math.Matter;
 import swervelib.parser.PIDFConfig;
@@ -45,6 +48,7 @@ public final class Constants {
     public static final class Controle {
       // Porta do controle
       public static final int DriverJoystick = 0;
+      public static final int OperatorJoystick = 0;
       
       // Deadband do controle
       public static final double DEADBAND = 0.0;
@@ -81,7 +85,40 @@ public final class Constants {
       public static final String NOME_TRAJETORIA2 = "New Path2";
     }
 
-    public static final class 
+    public static final class elevatorConstants{
+
+      public static final double KfowarSoftLimit = 0;
+    public static final double KreverseSoftLimit = 0;
+    public static final double kP = 0.2;
+    public static final double kI = 0;
+    public static final double kD = 0;
+    public static final int kelevatorMotor = 11; //Id elevador 11
+
+    }
+
+    public static class OuttakeConstants {
+      /** ID do motor de outtake */
+  //private final Sparkmax garra do cano
+  private final SparkMax OuttakeMotorIdDireito = new SparkMax(15, MotorType.kBrushless); // direito
+  private final SparkMax OuttakeMotorIdEsquerdo = new SparkMax(16, MotorType.kBrushless);// esquerdo
+   
+      /** Constantes PID para controle de angulação */
+      public static final double kPIDAngulationMotorKp = 0.04;
+      public static final double kPIDAngulationMotorKi = 0;
+      public static final double kPIDAngulationMotorKd = 0;
+
+      /** Posição de referência para o motor de outtake */
+      public static double kOuttakeMotorSetPoint = 0;
+
+      public static final double kOuttakeUpMotorMaxPosition = 1.5;
+      public static final double kOuttakeUpMotorMinPosition = 0.5;
+
+      /** Velocidade máxima do motor para mover o outtake para cima */
+      public static final double kOuttakeUpMotorMaxSpeed = 0.10;
+      /** Velocidade máxima do motor para mover o outtake para baixo */
+      public static final double kOuttakeDownMotorMaxSpeed = -0.10;
+    }
+
   }
    
     
